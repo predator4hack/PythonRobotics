@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 echo "Run test suites! "
-export PYTHONWARNINGS=default  # show warning
-#python -m unittest discover tests 
-#python -Wignore -m unittest discover tests #ignore warning
-coverage run -m unittest discover tests # generate coverage file
+
+# === pytest based test runner ===
+# -Werror: warning as error
+# --durations=0: show ranking of test durations
+# -l (--showlocals); show local variables when test failed
+pytest -n auto tests -l -Werror --durations=0

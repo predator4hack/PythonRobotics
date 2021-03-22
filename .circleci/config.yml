@@ -5,13 +5,14 @@ orbs:
 
 jobs:
   build_doc:
-    executor: python/default
+    docker:
+      - image: circleci/python:3.9
     steps:
       - checkout
       - python/load-cache
       - python/install-deps
       - python/save-cache
-      - run: pip install sphinx sphinx-autobuild sphinx-rtd-theme
+      - run: pip install sphinx sphinx-autobuild sphinx-rtd-theme pytest
       - run:
           command: cd docs;make html
           name: doc_build
